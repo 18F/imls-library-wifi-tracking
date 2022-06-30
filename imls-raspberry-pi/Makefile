@@ -14,7 +14,7 @@ endif
 endif
 
 check-install:
-	go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.41.1
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.41.1
 
 check:
 	golangci-lint run ./...
@@ -25,15 +25,15 @@ deps:
 	go mod download
 
 session-counter: deps
-	${ENVVARS} GOPATH=$$PWD/../release go install -ldflags $(LDFLAGS) gsa.gov/18f/cmd/session-counter
+	${ENVVARS} GOPATH=${RELEASEPATH} go install -ldflags $(LDFLAGS) gsa.gov/18f/cmd/session-counter
 
 wifi-hardware-search-cli: deps
-	${ENVVARS} GOPATH=$$PWD/../release go install -ldflags $(LDFLAGS) gsa.gov/18f/cmd/wifi-hardware-search-cli
+	${ENVVARS} GOPATH=${RELEASEPATH} go install -ldflags $(LDFLAGS) gsa.gov/18f/cmd/wifi-hardware-search-cli
 
 clean:
-	mkdir -p ../release/{bin,pkg}
-	chmod -R +w ../release/{bin,pkg}*
-	rm -rf ../release/{bin,pkg}
+	mkdir -p ${RELEASEPATH}/{bin,pkg}
+	chmod -R +w ${RELEASEPATH}/{bin,pkg}*
+	rm -rf ${RELEASEPATH}/{bin,pkg}
 
 test:
 	make -C internal/wifi-hardware-search test

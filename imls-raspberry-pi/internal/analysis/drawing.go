@@ -32,8 +32,8 @@ func DrawPatronSessions(durations []structs.Duration, outputPath string) {
 		Msg("iterating")
 
 	for _, d := range durations {
-		st := time.Unix(d.Start, 0).In(time.Local)
-		et := time.Unix(d.End, 0).In(time.Local)
+		st, _ := time.Parse(time.RFC3339, d.Start)
+		et, _ := time.Parse(time.RFC3339, d.End)
 		diff := int(et.Sub(st).Minutes())
 		// log.Println("st", st, "et", et, "diff", diff)
 		if isInDurationRange(diff) {
@@ -72,8 +72,8 @@ func DrawPatronSessions(durations []structs.Duration, outputPath string) {
 
 	for _, d := range durations {
 		// lw.Debug("duration ", d)
-		st := time.Unix(d.Start, 0).In(time.Local)
-		et := time.Unix(d.End, 0).In(time.Local)
+		st, _ := time.Parse(time.RFC3339, d.Start)
+		et, _ := time.Parse(time.RFC3339, d.End)
 		diff := int(et.Sub(st).Minutes())
 
 		totalPatrons += 1
@@ -156,7 +156,7 @@ func DrawPatronSessions(durations []structs.Duration, outputPath string) {
 
 	}
 
-	day := time.Unix(durations[0].Start, 0).In(time.Local)
+	day, _ := time.Parse(time.RFC3339, durations[0].Start)
 	summaryD := fmt.Sprintf("Patron sessions from %v %v, %v - %v %v", day.Month(), day.Day(), day.Year(), config.GetFCFSSeqID(), config.GetDeviceTag())
 	summaryA := fmt.Sprintf("%v devices seen", totalPatrons)
 	summaryP := fmt.Sprintf("%v patron devices", durationsInRange)
