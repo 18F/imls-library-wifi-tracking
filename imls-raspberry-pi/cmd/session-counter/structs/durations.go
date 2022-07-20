@@ -24,7 +24,7 @@ type Durations struct {
 type Duration struct {
 	ID        int    `json:"id" db:"id" type:"INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL"`
 	PiSerial  string `json:"pi_serial" db:"pi_serial" type:"TEXT"`
-	SessionID string `json:"session_id" db:"session_id" type:"TEXT"`
+	SessionID int64  `json:"session_id" db:"session_id" type:"TEXT"`
 	FCFSSeqID string `json:"fcfs_seq_id" db:"fcfs_seq_id" type:"TEXT"`
 	DeviceTag string `json:"device_tag" db:"device_tag" type:"TEXT"`
 	PatronID  int    `json:"patron_index" db:"patron_index" type:"INTEGER"`
