@@ -8,11 +8,11 @@ import (
 	"github.com/robfig/cron/v3"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
+	"gsa.gov/18f/cmd/session-counter/state"
 	"gsa.gov/18f/cmd/session-counter/tlp"
-	"gsa.gov/18f/internal/state"
 	"gsa.gov/18f/internal/version"
 	"gsa.gov/18f/internal/wifi-hardware-search/search"
-	"gsa.gov/18f/internal/zero-log-sentry"
+	zls "gsa.gov/18f/internal/zero-log-sentry"
 )
 
 var (
