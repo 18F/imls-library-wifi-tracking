@@ -116,7 +116,7 @@
 					 filter,
 				 },
 			 });
-			 totalDevices.value = devices.data.data[0].count;
+			 totalDevices.value = parseInt(devices.data.data[0].count).toLocaleString();
 			 const patrons = await api.get(`/items/${props.tableName}`, {
 				 params: {
 					 aggregate: {
@@ -125,7 +125,7 @@
 					 filter,
 				 },
 			 });
-			 totalPatrons.value = patrons.data.data[0].countDistinct.patron_index;
+			 totalPatrons.value = parseInt(patrons.data.data[0].countDistinct.patron_index).toLocaleString();
 			 const times = await api.get(`/items/${props.tableName}`, {
 				 params: {
 					 aggregate: {
@@ -164,7 +164,7 @@
  }
 
  .text {
-	 padding: 8px;
+	 padding: 8px 0;
  }
 
  .body {
